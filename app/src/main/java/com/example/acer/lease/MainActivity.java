@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         httpClient.addInterceptor(logging);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.107/lease/")
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();
