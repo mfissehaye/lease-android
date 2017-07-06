@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lease</string>
+    <string name="something_wrong">Something went wrong</string>
+    <string name="connect_error">Unable to connect</string>
+    <string name="loading_names">Loading Names</string>
+    <string name="loading_description">Loading Description</string>
+</resources>
