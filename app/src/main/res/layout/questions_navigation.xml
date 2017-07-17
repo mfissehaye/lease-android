@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/bluishGrey"
+        android:layout_gravity="center_vertical"/>
+
+    <ImageView
+        android:id="@+id/navigation_previous"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:padding="7dp"
+        android:minWidth="10dp"
+        android:contentDescription="@string/previous"
+        android:tint="@color/darkerBluishGrey"
+        app:srcCompat="@drawable/ic_keyboard_arrow_left_black_24dp"
+        android:onClick="previousQuestion"/>
+
+    <ImageView
+        android:id="@+id/navigation_stop"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:padding="7dp"
+        android:minWidth="10dp"
+        android:contentDescription="@string/flag"
+        android:tint="@color/darkerBluishGrey"
+        app:srcCompat="@drawable/ic_stop_black_24dp"
+        android:onClick="stopExam"/>
+
+    <ImageView
+        android:id="@+id/navigation_next"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|end"
+        android:padding="7dp"
+        android:minWidth="10dp"
+        android:contentDescription="@string/next"
+        android:tint="@color/darkerBluishGrey"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
+        android:onClick="nextQuestion"/>
+
+    <ImageView
+        android:id="@+id/navigation_home"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        android:padding="7dp"
+        android:minWidth="10dp"
+        android:contentDescription="@string/menu"
+        android:tint="@color/darkerBluishGrey"
+        app:srcCompat="@drawable/ic_menu_black_24dp"
+        android:onClick="showAllQuestions"/>
+
+</LinearLayout>

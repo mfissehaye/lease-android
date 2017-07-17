@@ -1,7 +1,7 @@
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
-# in C:\Users\Acer\AppData\Local\Android\Sdk/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
+# in C:\Users\mfissehaye\AppData\Local\Android\sdk/tools/proguard/proguard-android.txt
+# You can edit the include appDir and order by changing the proguardFiles
 # directive in build.gradle.
 #
 # For more details, see
@@ -23,3 +23,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepclassmembers class android.support.design.internal.BottomNavigationMenuView {
+    boolean mShiftingMode;
+}

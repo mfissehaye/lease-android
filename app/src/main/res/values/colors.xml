@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#1566c1</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#a9a9a9</color>
+    <color name="grey_CC">#CCCCCC</color>
+    <color name="very_light_gray">#f7f7f7</color>
+    <color name="light_gray">#e6e6e6</color>
+    <color name="lighter_gray">#f1f1f1</color>
+    <color name="background_grey">#d6d6d6</color>
+    <color name="appBlack">#444444</color>
+    <color name="green">#86c129</color>
+    <color name="light_green">#E5FAE3</color>
+    <color name="blueBlack">#3e4f59</color>
+    <color name="lightBlueBlack">#7e8b9b</color>
+    <color name="progressActiveColor">#94b7ef</color>
+    <color name="progressInactiveColor">#3a75b7</color>
+    <color name="bluishGrey">#e5e8ed</color>
+    <color name="darkerBluishGrey">#919ba9</color>
+    <color name="red">#d0011b</color>
+    <color name="light_red">#f0E1EB</color>
+    <color name="greenish_blue">#5a7264</color>
+    <color name="blue">#4990e2</color>
+    <color name="mediumBluishGrey">#f7fbf9</color>
+    <color name="grey_70">#707070</color>
+    <color name="tab_green">#00bfa5</color>
+    <color name="light_blue">#DDEEFF</color>
 </resources>

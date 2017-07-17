@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/see_results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:padding="@dimen/default_padding"
+        android:text="@string/see_results"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal|center_vertical" />
+
+    <TextView
+        android:id="@+id/restart_exam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/default_padding"
+        android:text="@string/restart_exam"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal|center_vertical" />
+
+</LinearLayout>

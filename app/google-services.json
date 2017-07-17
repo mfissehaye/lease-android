@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "379752193239",
+    "firebase_url": "https://passet-f04c9.firebaseio.com",
+    "project_id": "passet-f04c9",
+    "storage_bucket": "passet-f04c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379752193239:android:00e26f6195a40ef6",
+        "android_client_info": {
+          "package_name": "zewd.com.learnamharic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379752193239-ctaou3igiiktgk92je5ovrk2l2vi7ufl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "zewd.com.learnamharic",
+            "certificate_hash": "a315f2be5c7f62b14c515d9fd637b5a3b13ec285"
+          }
+        },
+        {
+          "client_id": "379752193239-o4o195a21f5tv2750gglcn2ke2g52kjh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdYFuJAv2_nU4PSwpfNTqpuqhbaf2mqqo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379752193239-o4o195a21f5tv2750gglcn2ke2g52kjh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

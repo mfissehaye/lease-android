@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@drawable/ic_favorite_black_24dp"
+        title="@string/title_home"/>
+
+    <tab
+        id="@+id/tab_nearby"
+        icon="@drawable/ic_near_me_black_24dp"
+        title="@string/title_study" />
+
+    <tab
+        id="@+id/tab_friends"
+        icon="@drawable/ic_account_circle_black_24dp"
+        title="@string/title_profile"/>
+
+</tabs>

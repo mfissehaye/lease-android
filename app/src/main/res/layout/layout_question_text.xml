@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/default_padding"
+    android:paddingBottom="@dimen/default_padding"
+    android:paddingLeft="@dimen/extra_large_padding"
+    android:paddingRight="@dimen/extra_large_padding"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:lineSpacingExtra="5dp"
+        android:textColor="@color/blueBlack" />
+
+    <ImageView
+        android:id="@+id/play_audio"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:padding="@dimen/small_padding"
+        app:srcCompat="@drawable/ic_volume_up_black_24dp"
+        android:tint="@color/bluishGrey"
+        android:layout_alignBottom="@id/question_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription="@string/read_question"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/question_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/question_text"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

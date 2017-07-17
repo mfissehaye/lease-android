@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProgressIndicatorView">
+        <attr name="total" format="integer" />
+        <attr name="activeColor" format="color" />
+        <attr name="inactiveColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="ScoreReportView">
+        <attr name="percentages" format="string" />
+    </declare-styleable>
+</resources>

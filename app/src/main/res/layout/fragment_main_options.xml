@@ -1,0 +1,306 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="zewd.com.learnamharic.fragment.MainOptionsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/bottom_navigation_height">
+
+        <RelativeLayout
+            android:id="@+id/questions_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/medium_padding">
+
+            <TextView
+                android:id="@+id/question_section_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/blueBlack"
+                android:paddingBottom="@dimen/default_padding"
+                android:text="@string/questions"/>
+
+            <com.andexert.library.RippleView
+                android:id="@+id/question_section_items_container"
+                android:layout_below="@id/question_section_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rv_centered="true"
+                app:rv_color="@color/grey">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/default_padding"
+                    android:paddingBottom="@dimen/default_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/timer_24px"/>
+
+                    <TextView
+                        android:id="@+id/quiz_button"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/default_padding"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingRight="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:text="@string/daily_quizzes"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:tint="@color/grey"
+                        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+                </LinearLayout>
+
+            </com.andexert.library.RippleView>
+            <com.andexert.library.RippleView
+                android:id="@+id/mini_mocks_section_items_container"
+                android:layout_below="@id/question_section_items_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rv_centered="true"
+                app:rv_color="@color/grey">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/default_padding"
+                    android:paddingBottom="@dimen/default_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/alarm_clock_24px"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mini_mocks"
+                        android:paddingLeft="@dimen/default_padding"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingRight="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:tint="@color/grey"
+                        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+                </LinearLayout>
+
+            </com.andexert.library.RippleView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/study_materials_container"
+            android:layout_below="@id/questions_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/medium_padding">
+
+            <TextView
+                android:id="@+id/study_materials_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/blueBlack"
+                android:paddingBottom="@dimen/default_padding"
+                android:text="@string/study_materials"/>
+
+            <com.andexert.library.RippleView
+                android:id="@+id/study_materials_videos_container"
+                android:layout_below="@id/study_materials_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rv_centered="true"
+                app:rv_color="@color/grey">
+
+                <LinearLayout
+                    android:paddingTop="@dimen/default_padding"
+                    android:paddingBottom="@dimen/default_padding"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/timer_24px"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/default_padding"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingRight="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:text="@string/study_materials_videos"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:tint="@color/grey"
+                        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+                </LinearLayout>
+
+            </com.andexert.library.RippleView>
+            <com.andexert.library.RippleView
+                android:id="@+id/review_of_the_day_container"
+                android:layout_below="@id/study_materials_videos_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rv_centered="true"
+                app:rv_color="@color/grey">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/default_padding"
+                    android:paddingBottom="@dimen/default_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/alarm_clock_24px"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/review_of_the_day"
+                        android:paddingLeft="@dimen/default_padding"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingRight="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:tint="@color/grey"
+                        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+                </LinearLayout>
+
+            </com.andexert.library.RippleView>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/notification_container"
+            android:layout_below="@id/study_materials_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/medium_padding"
+            android:layout_marginBottom="@dimen/bottom_navigation_height">
+
+            <TextView
+                android:id="@+id/notification_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/blueBlack"
+                android:paddingBottom="@dimen/default_padding"
+                android:text="@string/notifications"/>
+
+            <com.andexert.library.RippleView
+                android:id="@+id/subject_notification_container"
+                android:layout_below="@id/notification_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rv_centered="true"
+                app:rv_color="@color/grey">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/default_padding"
+                    android:paddingBottom="@dimen/default_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/timer_24px"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="@dimen/default_padding"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingRight="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding"
+                        android:text="@string/mathematics_notifications"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:tint="@color/grey"
+                        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+                </LinearLayout>
+
+            </com.andexert.library.RippleView>
+            <com.andexert.library.RippleView
+                android:id="@+id/notification_alert_container"
+                android:layout_below="@id/subject_notification_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rv_centered="true"
+                app:rv_color="@color/grey">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/default_padding"
+                    android:paddingBottom="@dimen/default_padding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/alarm_clock_24px"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/notification_alert_settings"
+                        android:paddingLeft="@dimen/default_padding"
+                        android:paddingStart="@dimen/default_padding"
+                        android:paddingRight="@dimen/default_padding"
+                        android:paddingEnd="@dimen/default_padding" />
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:tint="@color/grey"
+                        app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"/>
+
+                </LinearLayout>
+
+            </com.andexert.library.RippleView>
+        </RelativeLayout>
+    </RelativeLayout>
+</ScrollView>
