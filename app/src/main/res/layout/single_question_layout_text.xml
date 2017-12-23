@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/question_title_layout" />
+
+    <EditText
+        android:id="@+id/response_editable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:inputType="text"
+        android:lines="2"
+        android:maxLines="4"
+        android:textColor="@color/appBlack"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_background" />
+
+</LinearLayout>

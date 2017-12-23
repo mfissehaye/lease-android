@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/question_title_layout" />
+
+    <EditText
+        android:id="@+id/response_editable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="From"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_background"
+        android:inputType="numberDecimal" />
+
+</LinearLayout>

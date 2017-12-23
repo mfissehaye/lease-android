@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ahadoo.com.collect.CameraActivity">
+
+    <com.wonderkiln.camerakit.CameraView
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/take_new_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/take_new_picture"
+        app:srcCompat="@drawable/ic_camera_black_50dp"
+        android:tint="@color/light_red"
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:id="@+id/picture_options_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/retake_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/retake_picture"
+            app:srcCompat="@drawable/ic_cancel_black_50dp"
+            android:tint="@color/light_red"
+            android:layout_weight="1"
+            android:layout_marginBottom="30dp" />
+
+        <ImageView
+            android:id="@+id/approve_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/approve_picture"
+            app:srcCompat="@drawable/ic_check_black_50dp"
+            android:tint="@color/light_red"
+            android:layout_weight="1"
+            android:layout_marginBottom="30dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
