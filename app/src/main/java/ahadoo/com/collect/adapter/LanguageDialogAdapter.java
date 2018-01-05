@@ -13,10 +13,12 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Random;
 
+import ahadoo.com.collect.CollectApplication;
 import ahadoo.com.collect.QuestionActivity;
 import ahadoo.com.collect.R;
 import ahadoo.com.collect.fragment.LanguageDialogFragment;
 import ahadoo.com.collect.model.Survey;
+import ahadoo.com.collect.model.SurveyDao;
 import ahadoo.com.collect.model.Title;
 import ahadoo.com.collect.util.SurveyLanguage;
 
@@ -102,6 +104,21 @@ public class LanguageDialogAdapter extends RecyclerView.Adapter<LanguageDialogAd
 
         @Override
         public void onClick(View v) {
+
+            if(!survey.attempted) {
+
+                survey.attempted = true;
+
+                // if context is available
+                if(context.getContext() != null) {
+
+                    CollectApplication  application = (CollectApplication) context.getContext().getApplicationContext();
+
+                    SurveyDao surveyDao = application.getSurveyDao();
+
+                    surveyDao.saveInTx(survey);
+                }
+            }
 
             Intent intent = new Intent(context.getContext(), QuestionActivity.class);
 

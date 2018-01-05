@@ -23,17 +23,22 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import org.greenrobot.greendao.database.Database;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import ahadoo.com.collect.adapter.SurveyAdapter;
 import ahadoo.com.collect.client.SurveyClient;
 import ahadoo.com.collect.model.Survey;
 import ahadoo.com.collect.model.SurveyDao;
 import ahadoo.com.collect.model.SurveyResults;
+import ahadoo.com.collect.model.Title;
 import ahadoo.com.collect.util.CollectDatabaseHelpers;
 import ahadoo.com.collect.util.CollectHelpers;
 import ahadoo.com.collect.util.OnAlertResponse;
 import ahadoo.com.collect.util.RetrofitServiceGenerator;
+import ahadoo.com.collect.util.SurveyLanguage;
 import ahadoo.com.collect.util.UserPreferencesManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private boolean showingAnswers = false;
 
     private FirebaseAnalytics mFirebaseAnalytics;
+
+    private boolean backPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -215,7 +222,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                         for (Survey survey : surveys) {
 
-                            if (surveyDao.load(survey.getUuid()) == null) {
+                            Survey surveyInDatabase = surveyDao.load(survey.getUuid());
+
+                            if(surveyInDatabase == null || !surveyInDatabase.submitted) {
 
                                 surveyDao.insertOrReplaceInTx(survey);
                             }
@@ -255,6 +264,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 showingAnswers = false;
 
+                swipeRefreshLayout.setEnabled(true);
+
                 loadSurveys();
 
                 break;
@@ -262,6 +273,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_answer:
 
                 showingAnswers = true;
+
+                swipeRefreshLayout.setEnabled(false);
 
                 Toast.makeText(application, getString(R.string.showing_responses), Toast.LENGTH_SHORT).show();
 
@@ -303,6 +316,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         super.onResume();
 
+        // reset the current language to english
+        // todo reset the language to an option in prefs
+        Title.currentLanguage = SurveyLanguage.ENGLISH;
+
+        swipeRefreshLayout.setEnabled(!showingAnswers);
+
         if (surveyAdapter != null) {
 
             if (showingAnswers) {
@@ -322,5 +341,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
         outState.putBoolean(SHOWING_ANSWERS_IDENTIFIER, showingAnswers);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+//        super.onBackPressed();
+
+        Timer timer = new Timer();
+
+        if(backPressed) {
+
+            finish();
+
+            timer.cancel();
+
+            return;
+        }
+
+        backPressed = true;
+
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+
+                backPressed = false;
+
+                cancel();
+            }
+        }, 2000);
+
+        Toast.makeText(this, "Press back button again to exit", Toast.LENGTH_SHORT).show();
     }
 }

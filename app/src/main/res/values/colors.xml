@@ -6,7 +6,7 @@
     <color name="white">#FFFFFF</color>
     <color name="grey">#a9a9a9</color>
     <color name="grey_CC">#CCCCCC</color>
-    <color name="very_light_gray">#f7f7f7</color>
+    <color name="very_light_gray">#eeeeee</color>
     <color name="light_gray">#e6e6e6</color>
     <color name="lighter_gray">#f1f1f1</color>
     <color name="background_grey">#d6d6d6</color>
@@ -27,4 +27,5 @@
     <color name="grey_70">#707070</color>
     <color name="tab_green">#00bfa5</color>
     <color name="light_blue">#DDEEFF</color>
+    <color name="light_yellow">#ffffbb</color>
 </resources>

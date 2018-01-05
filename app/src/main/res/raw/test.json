@@ -1,0 +1,51 @@
+{
+  "attempted": true,
+  "description": {
+    "en": ""
+  },
+  "languages": [
+    "en"
+  ],
+  "sent": false,
+  "submitted": true,
+  "groups": [
+    {
+      "condition": {
+        "id": 0,
+        "operator": "\u0026\u0026",
+        "conditions": []
+      },
+      "index": 1,
+      "questions": [
+        "1f22ad536cde47378bf2394b695e3691"
+      ],
+      "root": true,
+      "uuid": "c4b7a1b8e195485594cf7f94bb52160c"
+    }
+  ],
+  "questions": [
+    {
+      "condition": {
+        "id": 0,
+        "operator": "\u0026\u0026",
+        "conditions": []
+      },
+      "choices": [],
+      "group": "c4b7a1b8e195485594cf7f94bb52160c",
+      "index": 1,
+      "type": "text",
+      "required": true,
+      "response": "yuj",
+      "survey": "379f9f104e01458481dc1cb876e1f14b",
+      "title": {
+        "en": "Question 1"
+      },
+      "uuid": "1f22ad536cde47378bf2394b695e3691",
+      "visible": false
+    }
+  ],
+  "title": {
+    "en": "Test redirect survey"
+  },
+  "uuid": "379f9f104e01458481dc1cb876e1f14b"
+}

@@ -2,18 +2,18 @@ package ahadoo.com.collect.fragment;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,7 +54,7 @@ public class ImageFragment extends Fragment {
 
     private static final int REQUEST_CODE_PICK_IMAGE = 3;
 
-    private static final int PERMISSIONS_REQUEST_CODE = 4;
+    private static final int CAMERA_AND_STORAGE_PERMISSIONS_REQUEST_CODE = 4;
 
     private SurveyQuestion question;
 
@@ -100,6 +101,13 @@ public class ImageFragment extends Fragment {
 
         bulletTextView.setText(String.format(getString(R.string.bullet), question.index));
 
+        QuestionActivity parentActivity = (QuestionActivity) getActivity();
+
+        if(parentActivity != null && parentActivity.isReviewing()) {
+
+            chooseFromGalleryButton.setVisibility(View.GONE);
+        }
+
         chooseFromGalleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +126,7 @@ public class ImageFragment extends Fragment {
 
         final File dir = new File(dirName);
 
-        String fileName = dir + "survey-response-" + question.surveyUUID + "-" + question.index + ".jpg";
+        String fileName = dir + "survey-responseEditable-" + question.surveyUUID + "-" + question.index + ".jpg";
 
         previewFile = new File(fileName);
 
@@ -160,25 +168,14 @@ public class ImageFragment extends Fragment {
 
     private boolean checkPermissions() {
 
-        List<String> permissions = new ArrayList<>();
-
-        boolean permissionRequested = false;
-
-        permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        permissions.add(Manifest.permission.CAMERA);
-
-        for(String permission : permissions) {
-
-            if(ContextCompat.checkSelfPermission(getContext(), permission) != PackageManager.PERMISSION_GRANTED) {
-
-                requestPermissions(permissions.toArray(new String[permission.length()]), PERMISSIONS_REQUEST_CODE);
-
-                permissionRequested = true;
-            }
+        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            return true;
         }
 
-        return ! permissionRequested;
+        ActivityCompat.requestPermissions(getActivity(), new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA }, CAMERA_AND_STORAGE_PERMISSIONS_REQUEST_CODE);
+
+        return false;
     }
 
     private void chooseImageFromGallery() {

@@ -50,15 +50,19 @@ public class Survey {
     @Convert(converter = SurveyQuestionListConverter.class, columnType = String.class)
     public List<SurveyQuestion> surveyQuestionList;
 
-    public boolean submitted;
+    public boolean submitted = false;
+
+    public boolean sent = false;
+
+    public boolean attempted = false;
 
     @Transient
     public SurveyLanguage language;
 
-    @Generated(hash = 401177111)
+    @Generated(hash = 197492478)
     public Survey(Title title, Title description, List<String> languages, String uuid,
-            List<SurveyGroup> surveyGroupList, List<SurveyQuestion> surveyQuestionList,
-            boolean submitted) {
+            List<SurveyGroup> surveyGroupList, List<SurveyQuestion> surveyQuestionList, boolean submitted,
+            boolean sent, boolean attempted) {
         this.title = title;
         this.description = description;
         this.languages = languages;
@@ -66,6 +70,8 @@ public class Survey {
         this.surveyGroupList = surveyGroupList;
         this.surveyQuestionList = surveyQuestionList;
         this.submitted = submitted;
+        this.sent = sent;
+        this.attempted = attempted;
     }
 
     @Generated(hash = 1742867551)
@@ -150,5 +156,21 @@ public class Survey {
         }
 
         return visibleQuestionUUIDs;
+    }
+
+    public boolean getSent() {
+        return this.sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
+    }
+
+    public boolean getAttempted() {
+        return this.attempted;
+    }
+
+    public void setAttempted(boolean attempted) {
+        this.attempted = attempted;
     }
 }

@@ -15,6 +15,7 @@
         android:inputType="numberDecimal|numberSigned"
         android:lines="1"
         android:maxLines="1"
+        android:saveEnabled="false"
         android:background="@drawable/edit_text_background"
         android:textColor="@color/appBlack"
         android:layout_marginTop="20dp"

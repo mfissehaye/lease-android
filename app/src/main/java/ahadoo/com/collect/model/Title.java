@@ -10,6 +10,13 @@ public class Title {
 
     public static SurveyLanguage currentLanguage = SurveyLanguage.ENGLISH;
 
+    public Title(String title) {
+        this.en = title;
+        this.am = "";
+        this.tig = "";
+        this.or = "";
+    }
+
     @SerializedName("en")
     public
     String en;
@@ -17,7 +24,7 @@ public class Title {
     @SerializedName("am")
     String am;
 
-    @SerializedName("tig")
+    @SerializedName("tg")
     String tig;
 
     @SerializedName("or")

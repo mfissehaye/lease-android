@@ -1,16 +1,20 @@
 package ahadoo.com.collect.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ahadoo.com.collect.QuestionActivity;
 import ahadoo.com.collect.R;
@@ -53,17 +57,33 @@ public class CurrencyFragment extends Fragment implements TextWatcher {
 
         ButterKnife.bind(this, view);
 
-        responseEditable.requestFocus();
-
         questionTextView.setText(question.text.toString());
 
         bullet.setText(String.format(getString(R.string.bullet), question.index));
+
+        showResponseEditText();
+
+        return view;
+    }
+
+    private void showResponseEditText() {
+
+        responseEditable.requestFocus();
 
         responseEditable.addTextChangedListener(this);
 
         responseEditable.setText(question.response);
 
-        return view;
+        QuestionActivity parentActivity = (QuestionActivity) getActivity();
+
+        if(parentActivity != null && parentActivity.isReviewing()) {
+
+            responseEditable.setBackground(ContextCompat.getDrawable(parentActivity, R.drawable.inactive_editable));
+
+            responseEditable.setEnabled(false);
+
+            responseEditable.setInputType(InputType.TYPE_NULL);
+        }
     }
 
     @Override
@@ -84,6 +104,6 @@ public class CurrencyFragment extends Fragment implements TextWatcher {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(QuestionActivity.SAVED_RESPONSE_IDENTIFIER, null);
+        outState.putString(QuestionActivity.SAVED_RESPONSE_IDENTIFIER, question.response);
     }
 }

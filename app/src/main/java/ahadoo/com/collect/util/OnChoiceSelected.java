@@ -1,7 +1,9 @@
 package ahadoo.com.collect.util;
 
+import java.util.List;
+
 import ahadoo.com.collect.model.SurveyChoice;
 
 public interface OnChoiceSelected {
-    void choiceSelected(SurveyChoice choice);
+    void choicesSelected(List<SurveyChoice> choices);
 }

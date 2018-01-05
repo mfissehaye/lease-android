@@ -1,6 +1,7 @@
 package ahadoo.com.collect.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,14 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import ahadoo.com.collect.R;
 import ahadoo.com.collect.fragment.LanguageDialogFragment;
 import ahadoo.com.collect.model.Survey;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.CustomViewHolder> {
 
@@ -47,17 +51,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.CustomView
 
         if (survey.getTitle() != null) {
 
-            String surveyTitle = survey.title.toString();
-
-            String surveyDescription = survey.description != null ? survey.description.en : "\n";
-
-            surveyDescription += "\nTotal Question: " + survey.surveyQuestionList.size()
-
-                    + "\nTotal Languages: " + survey.getLanguages().size();
-
-            holder.titleTextView.setText(surveyTitle);
-
-            holder.descriptionTextView.setText(surveyDescription);
+            holder.bind(survey);
 
         } else {
 
@@ -91,11 +85,21 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.CustomView
 
             View.OnLongClickListener {
 
+        @BindView(R.id.survey_title)
         TextView titleTextView;
 
+        @BindView(R.id.survey_description)
         TextView descriptionTextView;
 
+        @BindView(R.id.questions_languages_count)
+        TextView questionsLanguagesCount;
+
+        @BindView(R.id.continue_button)
+        TextView continueButton;
+
         View view;
+
+        Survey survey;
 
         CustomViewHolder(View itemView) {
 
@@ -103,9 +107,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.CustomView
 
             view = itemView;
 
-            titleTextView = (TextView) itemView.findViewById(R.id.survey_title);
-
-            descriptionTextView = (TextView) itemView.findViewById(R.id.survey_description);
+            ButterKnife.bind(this, view);
 
             itemView.setOnClickListener(this);
 
@@ -127,6 +129,57 @@ public class SurveyAdapter extends RecyclerView.Adapter<SurveyAdapter.CustomView
         @Override
         public boolean onLongClick(View v) {
             return true;
+        }
+
+        public void bind(Survey survey) {
+
+            this.survey = survey;
+
+            continueButton.setVisibility(View.INVISIBLE);
+
+            continueButton.setText(context.getString(R.string.continue_survey));
+
+            itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.very_light_gray));
+
+            titleTextView.setText(survey.title.toString());
+
+            questionsLanguagesCount.setText(context.getString(R.string.questions_languages_count, survey.surveyQuestionList.size(), survey.getLanguages().size()));
+
+            if(survey.description != null) {
+
+                descriptionTextView.setText(survey.description.toString());
+            }
+
+            if(survey.attempted) {
+
+                itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.light_blue));
+
+                continueButton.setVisibility(View.VISIBLE);
+            }
+
+            if(survey.submitted) {
+
+                if(survey.sent) {
+
+                    itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.light_green));
+
+                } else {
+
+                    itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.light_yellow));
+
+                    continueButton.setText(context.getString(R.string.waiting_for_network));
+                }
+            }
+        }
+
+        @OnClick(R.id.continue_button) void continueSurvey() {
+
+            if(survey.submitted && !survey.sent) {
+
+                Toast.makeText(context, "Trying to send again", Toast.LENGTH_SHORT).show();
+
+                // todo: listen to changes in network configuration to retry automatically
+            }
         }
     }
 }

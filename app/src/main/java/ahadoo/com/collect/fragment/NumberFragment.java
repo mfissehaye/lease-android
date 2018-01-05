@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +31,7 @@ public class NumberFragment extends Fragment implements TextWatcher {
     TextView questionTextView;
 
     @BindView(R.id.response_editable)
-    EditText response;
+    EditText responseEditable;
 
     public static NumberFragment getInstance(SurveyQuestion question) {
 
@@ -57,13 +59,29 @@ public class NumberFragment extends Fragment implements TextWatcher {
 
         questionTextView.setText(question.text.toString());
 
-        response.requestFocus();
-
-        response.addTextChangedListener(this);
-
-        response.setText(question.response);
+        showResponseEditable();
 
         return view;
+    }
+
+    private void showResponseEditable() {
+
+        responseEditable.requestFocus();
+
+        responseEditable.addTextChangedListener(this);
+
+        responseEditable.setText(question.response);
+
+        QuestionActivity parentActivity = (QuestionActivity) getActivity();
+
+        if(parentActivity != null && parentActivity.isReviewing()) {
+
+            responseEditable.setBackground(ContextCompat.getDrawable(parentActivity, R.drawable.inactive_editable));
+
+            responseEditable.setEnabled(false);
+
+            responseEditable.setInputType(InputType.TYPE_NULL);
+        }
     }
 
     @Override

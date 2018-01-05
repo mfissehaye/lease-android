@@ -13,7 +13,7 @@
     <string name="previous">Previous</string>
     <string name="question_required">The question is required</string>
     <string name="clear">Clear</string>
-    <string name="location_text">Latitude: %1$f, Longitude %2$f</string>
+    <string name="location_text">Latitude: %1$f\nLongitude %2$f</string>
     <string name="image_question">Image Question</string>
     <string name="choose_from_gallery">Choose From Gallery</string>
     <string name="take_new_picture">Take New Picture</string>
@@ -36,4 +36,14 @@
     <string name="confirm_logout">Are you sure you want to logout. You won\'t be able to fill in surveys until you login.</string>
     <string name="tag_line">Data Collection Made Easy</string>
     <string name="showing_responses">Showing your survey responses.</string>
+    <string name="title_location_permission">Location Permission</string>
+    <string name="text_location_permission">The app requires permission to read location information from your phone.</string>
+    <string name="getting_location">Getting Location. Please Wait...</string>
+    <string name="enable_location">Please enable location services</string>
+    <string name="clear_response">Clear Response</string>
+    <string name="reviewing">Reviewing\nClick to exit review mode</string>
+    <string name="range">From : %1$.2f - To : %2$.2f</string>
+    <string name="continue_survey">Continue</string>
+    <string name="questions_languages_count">#%1$d questions : #%2$d languages</string>
+    <string name="waiting_for_network">Not Sent <b>(!)</b>\nRetry</string>
 </resources>

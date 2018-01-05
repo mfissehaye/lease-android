@@ -6,11 +6,11 @@
 
     <TextView
         android:id="@+id/bullet"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:gravity="center_horizontal|center_vertical"
         android:textColor="@color/white"
-        android:textSize="21sp"
+        android:textSize="18sp"
         android:background="@drawable/circular_black_background"
         android:text="1" />
 
@@ -20,5 +20,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/lightBlueBlack"
         android:textSize="24sp"
-        android:layout_marginStart="20dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp" />
 </LinearLayout>

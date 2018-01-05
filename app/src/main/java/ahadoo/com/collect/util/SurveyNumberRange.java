@@ -4,9 +4,9 @@ import android.text.TextUtils;
 
 public class SurveyNumberRange {
 
-    public float from;
+    public double from;
 
-    public float to;
+    public double to;
 
     public SurveyNumberRange(String range) {
 
@@ -16,9 +16,9 @@ public class SurveyNumberRange {
 
         try {
 
-            from = Float.parseFloat(components[0]);
+            from = Double.parseDouble(components[0]);
 
-            to = Float.parseFloat(components[1]);
+            to = Double.parseDouble(components[1]);
 
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
 

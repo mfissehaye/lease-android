@@ -47,15 +47,41 @@
                 android:padding="10dp"
                 android:id="@+id/btn_previous" />
 
-            <ImageView
-                android:layout_width="0dp"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="@string/next_question"
-                app:srcCompat="@drawable/ic_send_black_24dp"
                 android:padding="10dp"
-                android:rotation="-45"
-                android:id="@+id/send" />
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/clear_response"
+                    app:srcCompat="@drawable/ic_clear_black_24dp"
+                    android:id="@+id/clear"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/reviewing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reviewing"
+                    android:textSize="9sp"
+                    android:visibility="gone"
+                    android:layout_centerHorizontal="true"
+                    android:textAllCaps="true"
+                    android:textColor="@color/red"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/send_survey"
+                    app:srcCompat="@drawable/ic_send_black_24dp"
+                    android:rotation="-45"
+                    android:id="@+id/send"
+                    android:layout_centerHorizontal="true"/>
+
+            </RelativeLayout>
 
             <ImageView
                 android:layout_width="0dp"

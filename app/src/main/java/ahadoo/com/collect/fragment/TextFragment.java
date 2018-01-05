@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,15 +57,31 @@ public class TextFragment extends Fragment implements TextWatcher {
 
         bullet.setText(String.format(getString(R.string.bullet), question.index));
 
-        responseEditText.requestFocus();
-
         titleTextView.setText(question.text.toString());
+
+        showResponseEditText();
+
+        return view;
+    }
+
+    private void showResponseEditText() {
+
+        responseEditText.requestFocus();
 
         responseEditText.addTextChangedListener(this);
 
         responseEditText.setText(question.response);
 
-        return view;
+        QuestionActivity parentActivity = (QuestionActivity) getActivity();
+
+        if(parentActivity != null && parentActivity.isReviewing()) {
+
+            responseEditText.setBackground(ContextCompat.getDrawable(parentActivity, R.drawable.inactive_editable));
+
+            responseEditText.setEnabled(false);
+
+            responseEditText.setInputType(InputType.TYPE_NULL);
+        }
     }
 
     @Override

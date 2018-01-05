@@ -24,6 +24,7 @@ android {
 dependencies {
     implementation 'com.google.firebase:firebase-core:11.0.4'
     implementation 'com.google.firebase:firebase-database:11.0.4'
+    compile 'com.google.firebase:firebase-crash:11.0.4'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -52,6 +53,11 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.wdullaer:materialdatetimepicker:3.4.1'
+
+    compile 'com.google.android.gms:play-services-location:11.0.4'
+    compile 'pl.charmas.android:android-reactive-location2:2.1@aar'
+//    compile 'io.reactivex:rxjava:2.0.5' //you can override RxJava version if you need
+
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

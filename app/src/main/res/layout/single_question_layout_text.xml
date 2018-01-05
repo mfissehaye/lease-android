@@ -15,6 +15,7 @@
         android:inputType="text"
         android:lines="2"
         android:maxLines="4"
+        android:saveEnabled="false"
         android:textColor="@color/appBlack"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_background" />

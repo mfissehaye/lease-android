@@ -12,14 +12,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.greenrobot.greendao.database.Database;
 
 import java.util.List;
 
 import ahadoo.com.collect.adapter.QuestionViewPager;
-import ahadoo.com.collect.fragment.ChoiceFragment;
+import ahadoo.com.collect.fragment.ChooseFragment;
 import ahadoo.com.collect.fragment.CurrencyFragment;
 import ahadoo.com.collect.fragment.DateFragment;
 import ahadoo.com.collect.fragment.ImageFragment;
@@ -35,8 +39,10 @@ import ahadoo.com.collect.model.Survey;
 import ahadoo.com.collect.util.CollectDatabaseHelpers;
 import ahadoo.com.collect.util.CollectHelpers;
 import ahadoo.com.collect.util.OnAlertResponse;
+import ahadoo.com.collect.util.SurveyTypeAdapterFactory;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class QuestionActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
 
@@ -63,11 +69,21 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.clear)
+    ImageView btnClear;
+
+    @BindView(R.id.reviewing)
+    TextView reviewingText;
+
     private static Survey survey;
 
     AlertDialog closeDialog = null;
 
+    private boolean reviewing = false;
+
     private List<String> visibleQuestionUUIDs;
+
+    String originalTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +117,8 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
 
         mPager.addOnPageChangeListener(this);
 
+        originalTitle = survey.getTitle().toString();
+
         //surveyTitle = getIntent().getExtras().getString("surveyTitle");
         getSupportActionBar().setTitle(survey.getTitle().toString());
 
@@ -128,7 +146,7 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
 
                     } else {
 
-                        Toast.makeText(QuestionActivity.this, getString(R.string.question_required), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuestionActivity.this, currentQuestion.getErrorMessage(), Toast.LENGTH_SHORT).show();
                     }
 
                     /*if(!canShowQuestion() && mPager.getCurrentItem() < survey.getSurveyQuestionList().size()) {
@@ -185,7 +203,17 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
 
                             db.setTransactionSuccessful();
 
+                            // Now start sending the survey
+                            Gson gson = new GsonBuilder()
+                                    .registerTypeAdapterFactory(new SurveyTypeAdapterFactory())
+                                    .create();
+
+                            String json = gson.toJson(survey);
+
+                            Toast.makeText(QuestionActivity.this, json, Toast.LENGTH_SHORT).show();
+
                         } catch(Exception e) {
+                            e.printStackTrace();
                         } finally {
                             db.endTransaction();
                         }
@@ -200,6 +228,18 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
 
                     }
                 });
+            }
+        });
+
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SurveyQuestion currentQuestion = survey.getSurveyQuestionList().get(mPager.getCurrentItem());
+
+                currentQuestion.response = null;
+
+                screenSlidePagerAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -250,7 +290,9 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
 
         btnNext.setVisibility(View.INVISIBLE);
 
-        btnSend.setVisibility(View.INVISIBLE);
+        btnSend.setVisibility(View.GONE);
+
+        btnClear.setVisibility(View.GONE);
 
         int currentPage = mPager.getCurrentItem();
 
@@ -266,9 +308,22 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
             btnNext.setVisibility(View.VISIBLE);
         }
 
-        if (currentPage == totalPages - 1) {
+        if(reviewing) {
 
-            btnSend.setVisibility(View.VISIBLE);
+            reviewingText.setVisibility(View.VISIBLE);
+
+        } else {
+
+            reviewingText.setVisibility(View.GONE);
+
+            if (currentPage == totalPages - 1) {
+
+                btnSend.setVisibility(View.VISIBLE);
+
+            } else {
+
+                btnClear.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -311,7 +366,7 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
 
                 SurveyQuestion question = survey.getSurveyQuestionList().get(position);
 
-                if (!question.validate()) {
+                if (question.response != null && !question.response.isEmpty() && !question.validate()) {
 
                     question.resetResponse();
                 }
@@ -324,11 +379,11 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
 
                     case CHOOSE_ANY:
 
-                        return ChoiceFragment.getInstance(question, true);
+                        return ChooseFragment.getInstance(question, true);
 
                     case CHOOSE_ONE:
 
-                        return ChoiceFragment.getInstance(question, false);
+                        return ChooseFragment.getInstance(question, false);
 
                     case CURRENCY:
 
@@ -386,6 +441,32 @@ public class QuestionActivity extends AppCompatActivity implements ViewPager.OnP
             super.destroyItem(container, position, object);
         }
 
+    }
+
+    public boolean isReviewing() {
+        return reviewing;
+    }
+
+    public void setReviewing() {
+
+        this.reviewing = true;
+
+        mPager.setCurrentItem(0);
+
+        screenSlidePagerAdapter.notifyDataSetChanged();
+
+        setUpButtonVisibility();
+    }
+
+    @OnClick(R.id.reviewing) void turnOffReviewing() {
+
+        this.reviewing = false;
+
+        mPager.setCurrentItem(screenSlidePagerAdapter.getCount() - 1);
+
+        screenSlidePagerAdapter.notifyDataSetChanged();
+
+        setUpButtonVisibility();
     }
 
     @Override

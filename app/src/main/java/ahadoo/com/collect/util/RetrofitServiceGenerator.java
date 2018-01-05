@@ -3,11 +3,8 @@ package ahadoo.com.collect.util;
 import android.text.TextUtils;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.text.DateFormat;
 
 import ahadoo.com.collect.model.Survey;
 import okhttp3.OkHttpClient;
@@ -21,11 +18,17 @@ public class RetrofitServiceGenerator {
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
+    private static Gson gson = new GsonBuilder()
+            .registerTypeAdapterFactory(new SurveyTypeAdapterFactory())
+            .create();
+
     private static Retrofit.Builder builder =
 
             new Retrofit.Builder()
+
                     .baseUrl(APP_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(/*gson*/));
+
+                    .addConverterFactory(GsonConverterFactory.create(gson));
 
     private static Retrofit retrofit = builder.build();
 
